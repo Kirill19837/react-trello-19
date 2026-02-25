@@ -1,18 +1,43 @@
-# React Trello
+# react-trello-19
 
-Pluggable components to add a Trello (like) kanban board to your application
+Pluggable components to add a Trello (like) kanban board to your React 19 application.
 
-[![Build Status](https://travis-ci.org/rcdexta/react-trello.svg?branch=master)](https://travis-ci.org/rcdexta/react-trello)
-[![yarn version](https://badge.fury.io/js/react-trello.svg)](https://badge.fury.io/js/react-trello)
-[![bundlephobia.com](https://img.shields.io/bundlephobia/minzip/react-trello.svg)](https://bundlephobia.com/result?p=react-trello)
+A modernized fork of [react-trello](https://github.com/rcdexta/react-trello) with full **React 19** support.
+
+[![npm version](https://badge.fury.io/js/react-trello-19.svg)](https://www.npmjs.com/package/react-trello-19)
+[![bundlephobia](https://img.shields.io/bundlephobia/minzip/react-trello-19.svg)](https://bundlephobia.com/result?p=react-trello-19)
+[![license](https://img.shields.io/npm/l/react-trello-19.svg)](https://github.com/Kirill19837/react-trello-19/blob/master/LICENSE.md)
 
 > This library is not affiliated, associated, authorized, endorsed by or in any way officially connected to Trello, Inc. `Trello` is a registered trademark of Atlassian, Inc.
 
-#### Basic Demo
-[![Edit react-trello-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/1o3zj95m9j)
+#### Live Demo
+**[https://kirill19837.github.io/react-trello-19/](https://kirill19837.github.io/react-trello-19/)**
 
-#### Features Showcase
-[Storybook](https://rcdexta.github.io/react-trello/)
+#### npm
+**[https://www.npmjs.com/package/react-trello-19](https://www.npmjs.com/package/react-trello-19)**
+
+## What's changed from react-trello
+
+- **React 19** compatible — removed `ReactDOM.findDOMNode` (API removed in React 19)
+- Replaced `UNSAFE_componentWillReceiveProps` with `componentDidUpdate`
+- Upgraded `react-redux` v5 → v9, `redux` v4 → v5
+- Upgraded `styled-components` v4 → v6
+- Added `@babel/runtime` as a proper runtime dependency
+- Enabled automatic JSX transform
+
+## Peer Dependencies
+
+```json
+{
+  "react": ">=19.0.0",
+  "react-dom": ">=19.0.0",
+  "react-redux": ">=9.0.0",
+  "redux": ">=5.0.0",
+  "redux-actions": ">=2.6.1",
+  "redux-logger": ">=3.0.6",
+  "styled-components": ">=6.0.0"
+}
+```
 
 ## Features
 
@@ -32,13 +57,13 @@ Pluggable components to add a Trello (like) kanban board to your application
 Install using npm or yarn
 
 ```bash
-$ npm install --save react-trello
+$ npm install --save react-trello-19
 ```
 
 or
 
 ```bash
-$ yarn add react-trello
+$ yarn add react-trello-19
 ```
 
 
@@ -73,8 +98,7 @@ const data = {
 The data is passed to the board component and that's it.
 
 ```jsx
-import React from 'react'
-import Board from 'react-trello'
+import Board from 'react-trello-19'
 
 export default class App extends React.Component {
   render() {
@@ -83,21 +107,14 @@ export default class App extends React.Component {
 }
 ```
 
-Refer to storybook for detailed examples: https://rcdexta.github.io/react-trello/
+Live demo: **[https://kirill19837.github.io/react-trello-19/](https://kirill19837.github.io/react-trello-19/)**
 
-Also refer to the sample project that uses react-trello as illustration: https://github.com/rcdexta/react-trello-example
-
-## Use edge version of project (current master branch)
+## Use edge version (current master branch)
 
 ```bash
-$ yarn add rcdexta/react-trello
+$ yarn add Kirill19837/react-trello-19
 ```
 
-and
-
-```javascript
-import Board from 'react-trello/src'
-```
 
 ## Upgrade
 
@@ -196,7 +213,7 @@ Refer to `stories` folder for examples on many more options for customization.
 
 It is possible to make the entire board editable by setting the `editable` prop to true. This switch prop will enable existing cards to be deleted and show a `Add Card` link at the bottom of each lane, clicking which will show an inline editable new card.
 
-Check out the [editable board story](https://rcdexta.github.io/react-trello/?selectedKind=Editable%20Board&selectedStory=Add%2FDelete%20Cards&full=0&down=0&left=1&panelRight=0) and its corresponding [source code](https://github.com/rcdexta/react-trello/blob/master/stories/EditableBoard.story.js) for more details.
+Check out the [live demo](https://kirill19837.github.io/react-trello-19/) and the [source code](https://github.com/Kirill19837/react-trello-19/blob/master/stories/EditableBoard.story.js) for more details.
 
 ## Styling and customization
 
@@ -252,7 +269,7 @@ const components = {
 <Board components={components} />
 ```
 
-Total list of customizable components: [src/components/index.js ](src/components/index.js)
+Total list of customizable components: [src/components/index.js](https://github.com/Kirill19837/react-trello-19/blob/master/src/components/index.js)
 
 Refer to [components definitions](src/components) to discover their properties list and types.
 
@@ -304,13 +321,13 @@ const customTranslation = (key) => TRANSLATION_TABLE[key]
 // If your translation table has nested hashes (provided translations table is it)
 //
 // For example: { 'placeholder': { 'title': 'some text' } }
-import { createTranslate } from 'react-trello'
+import { createTranslate } from 'react-trello-19'
 const customTranslation = createTranslate(TRANSLATION_TABLE)
 
 <Board t={customTranslation} .../>
 ```
 
-List of available keys - [locales/en/translation.json](https://github.com/rcdexta/react-trello/blob/master/locales/en/translation.json)
+List of available keys - [locales/en/translation.json](https://github.com/Kirill19837/react-trello-19/blob/master/src/locales/en/translation.json)
 
 
 ### react-i18next example
@@ -331,14 +348,10 @@ Tested to work with following browsers using [Browserling](https://www.browserli
 * Safari 4.0 or above
 * Microsoft Edge 15 or above
 
-## Logging
-
-Pass environment variable `REDUX_LOGGING` as true to enable Redux logging in any environment
-
 ## Development
 
 ```
-cd react-trello/
+cd react-trello-19/
 yarn install
 yarn run storybook
 ```
@@ -360,20 +373,9 @@ Learn how to write stories [here](https://storybook.js.org/basics/writing-storie
 
 ### Maintainers
 
-<table>
-<tr>
-<td align="center">
-<img src="https://avatars1.githubusercontent.com/u/900028?s=460&v=4" width="100px;" alt=""/>
-<br /><sub><b>rcdexta</b></sub></a><br />
-</td>
+Forked and maintained by [Kirill19837](https://github.com/Kirill19837).
 
-<td align="center">
-<img src="https://avatars1.githubusercontent.com/u/31139?s=460&v=4" width="100px;" alt=""/>
-<br /><sub><b>dapi</b></sub></a><br />
-</td>
-
-</tr>
-</table>
+Original authors: [rcdexta](https://github.com/rcdexta), [dapi](https://github.com/dapi) and [contributors](https://github.com/rcdexta/react-trello/graphs/contributors).
 
 
 ### License
