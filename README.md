@@ -1,42 +1,49 @@
 # react-trello-19
 
-Pluggable components to add a Trello (like) kanban board to your React 19 application.
-
-A modernized fork of [react-trello](https://github.com/rcdexta/react-trello) with full **React 19** support.
+> A Trello-like kanban board component for **React 19**.  
+> Drop-in replacement for [react-trello](https://www.npmjs.com/package/react-trello) — same API, fully compatible with React 19.
 
 [![npm version](https://badge.fury.io/js/react-trello-19.svg)](https://www.npmjs.com/package/react-trello-19)
 [![bundlephobia](https://img.shields.io/bundlephobia/minzip/react-trello-19.svg)](https://bundlephobia.com/result?p=react-trello-19)
 [![license](https://img.shields.io/npm/l/react-trello-19.svg)](https://github.com/Kirill19837/react-trello-19/blob/master/LICENSE.md)
 
+**[📦 npm](https://www.npmjs.com/package/react-trello-19)** · **[🚀 Live Demo](https://kirill19837.github.io/react-trello-19/)** · **[📁 GitHub](https://github.com/Kirill19837/react-trello-19)**
+
+---
+
+The original `react-trello` package does not support React 19 due to removed APIs (`ReactDOM.findDOMNode`, `UNSAFE_componentWillReceiveProps`) and outdated peer dependencies. `react-trello-19` is a maintained package that fixes all of these with **the same API** — just change your import.
+
+**Migrating from react-trello:**
+
+```bash
+npm uninstall react-trello
+npm install react-trello-19
+```
+
+```diff
+- import Board from 'react-trello'
++ import Board from 'react-trello-19'
+```
+
+That's it. No other code changes needed.
+
 > This library is not affiliated, associated, authorized, endorsed by or in any way officially connected to Trello, Inc. `Trello` is a registered trademark of Atlassian, Inc.
 
-#### Live Demo
-**[https://kirill19837.github.io/react-trello-19/](https://kirill19837.github.io/react-trello-19/)**
+## What's fixed vs react-trello
 
-#### npm
-**[https://www.npmjs.com/package/react-trello-19](https://www.npmjs.com/package/react-trello-19)**
-
-## What's changed from react-trello
-
-- **React 19** compatible — removed `ReactDOM.findDOMNode` (API removed in React 19)
-- Replaced `UNSAFE_componentWillReceiveProps` with `componentDidUpdate`
-- Upgraded `react-redux` v5 → v9, `redux` v4 → v5
-- Upgraded `styled-components` v4 → v6
-- Added `@babel/runtime` as a proper runtime dependency
-- Enabled automatic JSX transform
+| Issue | Fix |
+|---|---|
+| `ReactDOM.findDOMNode` removed in React 19 | Replaced with `ref` callbacks |
+| `UNSAFE_componentWillReceiveProps` warnings | Migrated to `componentDidUpdate` |
+| `react-redux` v5 incompatible with React 19 | Upgraded to v9 |
+| `redux` v4 peer dep mismatch | Upgraded to v5 |
+| `styled-components` v4 incompatible | Upgraded to v6 |
+| `@babel/runtime` missing as runtime dep | Added explicitly |
 
 ## Peer Dependencies
 
-```json
-{
-  "react": ">=19.0.0",
-  "react-dom": ">=19.0.0",
-  "react-redux": ">=9.0.0",
-  "redux": ">=5.0.0",
-  "redux-actions": ">=2.6.1",
-  "redux-logger": ">=3.0.6",
-  "styled-components": ">=6.0.0"
-}
+```bash
+npm install react@^19 react-dom@^19 react-redux@^9 redux@^5 redux-actions styled-components@^6
 ```
 
 ## Features
