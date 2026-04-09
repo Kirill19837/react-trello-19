@@ -6,4 +6,4 @@ coverage
 npm-debug.log
 dist/
 example/dist/
-.history/
+.history/docs/
