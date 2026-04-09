@@ -1,6 +1,6 @@
 {
   "name": "react-trello-19",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Pluggable components to add a trello like kanban board to your application",
   "main": "dist/index.js",
   "files": [
