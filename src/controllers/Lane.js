@@ -256,18 +256,56 @@ class Lane extends Component {
       onLaneUpdate,
       onCardUpdate,
       onCardMoveAcrossLanes,
-      ...otherProps
+      // non-DOM: header-related
+      title,
+      label,
+      titleStyle,
+      labelStyle,
+      laneDraggable,
+      canAddLanes,
+      t,
+      editable,
+      // non-DOM: card/dnd-related
+      boardId,
+      getCardDetails,
+      currentPage,
+      droppable,
+      laneSortFunction,
+      cardStyle,
+      tagStyle,
+      cardDraggable,
+      cardDragClass,
+      cardDropClass,
+      hideCardDeleteIcon,
+      actions,
+      index,
+      // remaining are DOM-safe (e.g. style, className)
+      ...domProps
     } = this.props
     const allClassNames = classNames('react-trello-lane', this.props.className || '')
     const showFooter = collapsibleLanes && cards.length > 0
+    const headerProps = {
+      id,
+      cards,
+      title,
+      label,
+      titleStyle,
+      labelStyle,
+      laneDraggable,
+      canAddLanes,
+      t,
+      editable,
+      boardId,
+      ...domProps
+    }
     return (
       <components.Section
-        {...otherProps}
+        {...domProps}
         key={id}
         onClick={() => onLaneClick && onLaneClick(id)}
         draggable={false}
         className={allClassNames}>
-        {this.renderHeader({id, cards, ...otherProps})}
+        {this.renderHeader(headerProps)}
         {this.renderDragContainer(isDraggingOver)}
         {loading && <components.Loader />}
         {showFooter && <components.LaneFooter onClick={this.toggleLaneCollapsed} collapsed={collapsed} />}

@@ -109,7 +109,9 @@ export const Section = styled.section`
   flex-direction: column;
 `
 
-export const LaneHeader = styled(Header)`
+export const LaneHeader = styled(Header).withConfig({
+  shouldForwardProp: prop => prop !== 'editLaneTitle'
+})`
   margin-bottom: 0px;
   ${props =>
     props.editLaneTitle &&
@@ -132,7 +134,9 @@ export const LaneFooter = styled.div`
   height: 10px;
 `
 
-export const ScrollableLane = styled.div`
+export const ScrollableLane = styled.div.withConfig({
+  shouldForwardProp: prop => prop !== 'isDraggingOver'
+})`
   flex: 1;
   overflow-y: auto;
   min-width: 250px;
