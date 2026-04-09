@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import {storiesOf} from '@storybook/react'
-
 import Board from '../src'
 
 const data = require('./data/base.json')
@@ -21,4 +19,11 @@ class AsyncBoard extends Component {
   }
 }
 
-storiesOf('Advanced Features', module).add('Async Load data', () => <AsyncBoard />, {info: 'Load board data asynchronously after the component has mounted'})
+export default {
+  title: 'Advanced Features',
+}
+
+export const AsyncLoadData = {
+  name: 'Async Load data',
+  render: () => <AsyncBoard />,
+}

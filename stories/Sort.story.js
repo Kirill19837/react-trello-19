@@ -1,18 +1,18 @@
 import React from 'react'
-import {storiesOf} from '@storybook/react'
-
 import Board from '../src'
 
 const data = require('./data/data-sort.json')
 
-storiesOf('Basic Functions', module)
-  .add(
-    'Sorted Lane',
-    () => <Board data={data} laneSortFunction={(card1, card2) => new Date(card1.metadata.completedAt) - new Date(card2.metadata.completedAt)} />,
-    {info: 'A lane sorted by completed at ascending'}
-  )
-  .add(
-    'Reverse Sorted Lane',
-    () => <Board data={data} laneSortFunction={(card1, card2) => new Date(card2.metadata.completedAt) - new Date(card1.metadata.completedAt)} />,
-    {info: 'A lane sorted by completed at descending'}
-  )
+export default {
+  title: 'Basic Functions',
+}
+
+export const SortedLane = {
+  name: 'Sorted Lane',
+  render: () => <Board data={data} laneSortFunction={(c1, c2) => new Date(c1.metadata.completedAt) - new Date(c2.metadata.completedAt)} />,
+}
+
+export const ReverseSortedLane = {
+  name: 'Reverse Sorted Lane',
+  render: () => <Board data={data} laneSortFunction={(c1, c2) => new Date(c2.metadata.completedAt) - new Date(c1.metadata.completedAt)} />,
+}

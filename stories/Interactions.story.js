@@ -1,6 +1,4 @@
 import React from 'react'
-import {storiesOf} from '@storybook/react'
-
 import Board from '../src'
 
 const data = {
@@ -21,9 +19,13 @@ const data = {
   ]
 }
 
-storiesOf('Advanced Features', module).add(
-  'Event Handling',
-  () => (
+export default {
+  title: 'Advanced Features',
+}
+
+export const EventHandling = {
+  name: 'Event Handling',
+  render: () => (
     <Board
       draggable
       data={data}
@@ -31,5 +33,4 @@ storiesOf('Advanced Features', module).add(
       onLaneClick={laneId => alert(`Lane with id:${laneId} clicked`)}
     />
   ),
-  {info: 'Adding event handlers to cards'}
-)
+}

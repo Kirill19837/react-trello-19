@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
-import {storiesOf} from '@storybook/react'
 import update from 'immutability-helper'
 import debug from './helpers/debug'
-
 import Board from '../src'
 
 const data = require('./data/base.json')
@@ -32,15 +30,13 @@ class RealtimeBoard extends Component {
   }
 
   modifyLaneTitle = () => {
-    const data = this.state.boardData
-    const newData = update(data, {lanes: {1: {title: {$set: 'New Lane Title'}}}})
-    this.setState({boardData: newData})
+    const d = this.state.boardData
+    this.setState({boardData: update(d, {lanes: {1: {title: {$set: 'New Lane Title'}}}})})
   }
 
   modifyCardTitle = () => {
-    const data = this.state.boardData
-    const newData = update(data, {lanes: {1: {cards: {0: {title: {$set: 'New Card Title'}}}}}})
-    this.setState({boardData: newData})
+    const d = this.state.boardData
+    this.setState({boardData: update(d, {lanes: {1: {cards: {0: {title: {$set: 'New Card Title'}}}}}})})
   }
 
   updateCard = () => {
@@ -69,30 +65,23 @@ class RealtimeBoard extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.completeMilkEvent} style={{margin: 5}}>
-          Complete Buy Milk
-        </button>
-        <button onClick={this.addBlockedEvent} style={{margin: 5}}>
-          Add Blocked
-        </button>
-        <button onClick={this.modifyLaneTitle} style={{margin: 5}}>
-          Modify Lane Title
-        </button>
-        <button onClick={this.modifyCardTitle} style={{margin: 5}}>
-          Modify Card Title
-        </button>
-        <button onClick={this.prioritizeWriteBlog} style={{margin: 5}}>
-          Prioritize Write Blog
-        </button>
-        <button onClick={this.updateCard} style={{margin: 5}}>
-          Update Dispose Garbage
-        </button>
+        <button onClick={this.completeMilkEvent} style={{margin: 5}}>Complete Buy Milk</button>
+        <button onClick={this.addBlockedEvent} style={{margin: 5}}>Add Blocked</button>
+        <button onClick={this.modifyLaneTitle} style={{margin: 5}}>Modify Lane Title</button>
+        <button onClick={this.modifyCardTitle} style={{margin: 5}}>Modify Card Title</button>
+        <button onClick={this.prioritizeWriteBlog} style={{margin: 5}}>Prioritize Write Blog</button>
+        <button onClick={this.updateCard} style={{margin: 5}}>Update Dispose Garbage</button>
         <Board data={this.state.boardData} onDataChange={this.shouldReceiveNewData} eventBusHandle={this.setEventBus} />
       </div>
     )
   }
 }
 
-storiesOf('Advanced Features', module).add('Realtime Events', () => <RealtimeBoard />, {
-  info: 'This is an illustration of external events that modify the cards in the board'
-})
+export default {
+  title: 'Advanced Features',
+}
+
+export const RealtimeEvents = {
+  name: 'Realtime Events',
+  render: () => <RealtimeBoard />,
+}

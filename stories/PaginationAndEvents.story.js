@@ -1,6 +1,4 @@
 import React, {Component} from 'react'
-import {storiesOf} from '@storybook/react'
-
 import Board from '../src'
 
 let eventBus
@@ -19,12 +17,7 @@ function generateCards(requestedPage = 1) {
   const cards = []
   let fetchedItems = (requestedPage - 1) * PER_PAGE
   for (let i = fetchedItems + 1; i <= fetchedItems + PER_PAGE; i++) {
-    cards.push({
-      id: `${i}`,
-      title: `Card${i}`,
-      description: `Description for #${i}`,
-      metadata: {cardId: `${i}`}
-    })
+    cards.push({id: `${i}`, title: `Card${i}`, description: `Description for #${i}`, metadata: {cardId: `${i}`}})
   }
   return cards
 }
@@ -32,51 +25,31 @@ function generateCards(requestedPage = 1) {
 class BoardWrapper extends Component {
   state = {data: this.props.data}
 
-  setEventBus = handle => {
-    eventBus = handle
-  }
+  setEventBus = handle => { eventBus = handle }
 
-  delayedPromise = (durationInMs, resolutionPayload) => {
-    return new Promise(function(resolve) {
-      setTimeout(function() {
-        resolve(resolutionPayload)
-      }, durationInMs)
-    })
-  }
+  delayedPromise = (durationInMs, resolutionPayload) =>
+    new Promise(resolve => setTimeout(() => resolve(resolutionPayload), durationInMs))
 
   refreshCards = () => {
     eventBus.publish({
       type: 'REFRESH_BOARD',
-      data: {
-        lanes: [
-          {
-            id: 'Lane1',
-            title: 'Changed Lane',
-            cards: []
-          }
-        ]
-      }
+      data: {lanes: [{id: 'Lane1', title: 'Changed Lane', cards: []}]}
     })
   }
 
-  paginate = (requestedPage, laneId) => {
-    let newCards = generateCards(requestedPage)
-    return this.delayedPromise(2000, newCards)
+  paginate = requestedPage => {
+    return this.delayedPromise(2000, generateCards(requestedPage))
   }
 
   render() {
     return (
       <div>
-        <button onClick={addCard} style={{margin: 5}}>
-          Add Card
-        </button>
-        <button onClick={this.refreshCards} style={{margin: 5}}>
-          Refresh Board
-        </button>
+        <button onClick={addCard} style={{margin: 5}}>Add Card</button>
+        <button onClick={this.refreshCards} style={{margin: 5}}>Refresh Board</button>
         <Board
           data={this.state.data}
           eventBusHandle={this.setEventBus}
-          laneSortFunction={(card1, card2) => parseInt(card1.id) - parseInt(card2.id)}
+          laneSortFunction={(c1, c2) => parseInt(c1.id) - parseInt(c2.id)}
           onLaneScroll={this.paginate}
         />
       </div>
@@ -84,31 +57,13 @@ class BoardWrapper extends Component {
   }
 }
 
-storiesOf('Advanced Features', module).add(
-  'Scrolling and Events',
-  () => {
-    const data = {
-      lanes: [
-        {
-          id: 'Lane1',
-          title: 'Lane1',
-          cards: generateCards()
-        }
-      ]
-    }
+export default {
+  title: 'Advanced Features',
+}
 
-    return <BoardWrapper data={data} />
-  },
-  {
-    info: `
-      Infinite scroll with onLaneScroll function callback to fetch more items
-      
-      The callback function passed to onLaneScroll will be of the following form
-      ~~~js
-      function paginate(requestedPage, laneId) {
-        return fetchCardsFromBackend(laneId, requestedPage); 
-      };
-      ~~~
-    `
-  }
-)
+export const ScrollingAndEvents = {
+  name: 'Scrolling and Events',
+  render: () => (
+    <BoardWrapper data={{lanes: [{id: 'Lane1', title: 'Lane1', cards: generateCards()}]}} />
+  ),
+}
