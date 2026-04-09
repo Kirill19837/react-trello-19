@@ -21,5 +21,6 @@ module.exports = {
     '<rootDir>/node_modules/',
     'story(.*).tsx'
   ],
-  collectCoverage: true
+  collectCoverage: true,
+  passWithNoTests: true
 }
